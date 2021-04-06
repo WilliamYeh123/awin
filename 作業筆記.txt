@@ -1,0 +1,34 @@
+1-1
+步驟 : 1.導入測資，並宣告一16*751之表格DP
+       2.將第0行與第0列之值設為0
+       3.使用dynamic programming: case1: 不拿第n號物品，則DP[n][w] = DP[n-1][w]
+				  case2: 拿第n號物品，則DP[n][w] = DP[n-1][w-(n號物品重量)]+ n號物品價值
+
+困難 : 以dynamic programming的方式解0/1 knapsack problem為大學演算法課程中dynamic programming章節之內容，因此解題過程較無困難，主要的挑戰為熟悉python之語法。
+
+參考資料 : 大學演算法筆記、https://ithelp.ithome.com.tw/articles/10231463
+
+
+
+
+2-1
+步驟 : 1.install tensorflow and keras
+       2.from tensorflow.keras.datasets import mnist
+         import matplotlib.pyplot as plt
+       3.自mnist讀入資料 ( 訓練用圖片與標籤(train_image, train_label)相片與標籤各6萬筆, 測試用圖片與標籤(test_image, test_label)各1萬筆 )
+       4.自60000筆測試資料隨機挑10筆，並印出圖形
+       5.用reshape() 將60000筆28*28的資料轉換成 (60000,784); 60000列, 一列 784點​，再將 0~255 的像素值除以255做標準化, 轉換成 0~1 的浮點數
+       6.建立準備訓練的神經網路(建立序列模型)
+       7.指定optimizer 與 loss function
+       8.程式畫出測試圖片並標示預測結果與標準答案​
+       9.畫出loss function 與 accuracy曲線
+      10.由各次loss或accuracy的損失與精確比例調整訓練的epoch與第二隱藏層的node縮減或增加數目
+
+困難與檢討 : 
+1. 畢竟這是第一次接觸AI相關主題的題目，很多觀念都要此次開始自我學習並建立知識，自是無法一次就貫通ML的精神，尤其是建立神經網路模型的概念, 單就輸入層的資料了解、隱藏層的神經元之啟動函數模擬使用, 都耗費許多時間。
+2. 關於各種參數的調整，體認到像是訓練的次數越多，或是隱藏層的數字較大，訓練的效果是否會更好，還是梯度下降，accuracy就不會有太大的影響了.
+3. 程式實驗時, epoch設成10, 但第4次到第10次的精確度就沒有明顯的提升,若使用測試資料時沒有太多的錯誤, 應該就設epoch=5即可; 原本寫程式用loop去顧慮許多條件的比較, 在這種模型的建立與參數的調整就可收到成效令我相當佩服; 未來改良此程式, 我將朝向用更多的list[]來保留與追蹤這些值來判斷相關參數的設定.
+4. 本次看程式學網路只進入初階, layer只用到了Dense, 日後會再陸續找例子了解 Conv2D, Flatten, Add, Concatenate等模型的建立
+
+參考資料 : https://blog.toright.com/posts/6914/keras-mnist-helloworld.html
+
